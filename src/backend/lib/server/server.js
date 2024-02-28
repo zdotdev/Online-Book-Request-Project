@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import router from './routes/router.js'
 
 const app = express()
 dotenv.config()
@@ -23,6 +24,4 @@ mongoose
   .catch(err => {
     console.log(err)
   })
-app.use('/api', (req, res) => {
-  res.status(200).json({ Success: 'Connected' })
-})
+app.use('/api', router)
