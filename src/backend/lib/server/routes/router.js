@@ -11,8 +11,8 @@ import {
 const router = express.Router()
 
 router.get('/getAllBooks', getAllBooks)
-router.get('/:name', getBookByTitle)
-router.get('/:id', getbookByID)
+router.get('/title/:title', getBookByTitle)
+router.get('/id/:id', getbookByID)
 router.post('/addBook', addBook)
 router.put('/editBook/:id', editBook)
 router.delete('/delete/:id', deleteBookById)

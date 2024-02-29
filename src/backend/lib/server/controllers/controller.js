@@ -5,7 +5,7 @@ export const getAllBooks = async (req, res) => {
   try {
     const allBooks = await Book.find({})
 
-    res.status(200).json({ allBooks })
+    res.status(200).json(allBooks)
   } catch (err) {
     console.log(err)
   }
@@ -14,8 +14,11 @@ export const getAllBooks = async (req, res) => {
 export const getBookByTitle = async (req, res) => {
   const bookTitle = req.params.title
   try {
-    const book = await Book.find({ titel: bookTitle })
-    res.status(200).json({ book })
+    const book = await Book.find({ title: bookTitle })
+    if (!book) {
+      res.status(404).json({ error: 'Book not found' })
+    }
+    return res.status(200).json(book)
   } catch (err) {
     console.log(err)
   }
@@ -24,8 +27,8 @@ export const getBookByTitle = async (req, res) => {
 export const getbookByID = async (req, res) => {
   const bookId = req.params.id
   try {
-    const book = await Book.findOne({ bookId })
-    res.status(200).json({ book })
+    const book = await Book.findById({ _id: bookId })
+    res.status(200).json(book)
   } catch (err) {
     console.log(err)
   }
